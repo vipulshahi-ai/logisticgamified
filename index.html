@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Logit Lab | Interactive Logistic Regression</title>
+    <meta name="description"
+        content="Master Logistic Regression through a hands-on gamified experience. Separation, Sigmoids, and Loss functions explained visually.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+    <div class="stars"></div>
+    <div class="container">
+        <header class="hero">
+            <h1 class="glitch" data-text="THE LOGIT LAB">THE LOGIT LAB</h1>
+            <p class="subtitle">Can you draw the line between success and failure?</p>
+        </header>
+
+        <main class="app-grid">
+            <!-- Left Panel: Controls & Education -->
+            <section class="control-panel glass">
+                <div class="tabs">
+                    <button class="tab-btn active" data-level="1">Lvl 1: Linear</button>
+                    <button class="tab-btn" data-level="2">Lvl 2: S-Curve</button>
+                    <button class="tab-btn" data-level="3">Lvl 3: Boundary</button>
+                </div>
+
+                <div class="module-content">
+                    <div id="module-info" class="info-box">
+                        <h3 id="module-title">The Linear Combo</h3>
+                        <p id="module-desc">Adjust the weights (w) and bias (b) to move the decision boundary. The value
+                            <strong>z = w₁x₁ + w₂x₂ + b</strong> determines the distance from the line.
+                        </p>
+                        <div class="formula">
+                            <span id="formula-display">z = <span class="w1-val">1.0</span>x₁ + <span
+                                    class="w2-val">1.0</span>x₂ + <span class="b-val">0.0</span></span>
+                        </div>
+                    </div>
+
+                    <div class="sliders">
+                        <div class="control-group">
+                            <label>Weight w₁ (X-axis)</label>
+                            <input type="range" id="w1-slider" min="-5" max="5" step="0.1" value="1">
+                            <span class="value-badge w1-val">1.0</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Weight w₂ (Y-axis)</label>
+                            <input type="range" id="w2-slider" min="-5" max="5" step="0.1" value="1">
+                            <span class="value-badge w2-val">1.0</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Bias b (Shift)</label>
+                            <input type="range" id="b-slider" min="-10" max="10" step="0.5" value="0">
+                            <span class="value-badge b-val">0.0</span>
+                        </div>
+                    </div>
+
+                    <div class="action-btns">
+                        <button id="auto-train" class="neon-btn secondary">Automate (Gradient Descent)</button>
+                        <button id="reset-data" class="neon-btn tertiary">Scramble Data</button>
+                    </div>
+                </div>
+
+                <!-- Quiz System -->
+                <div id="quiz-container" class="quiz-box glass invisible">
+                    <div class="quiz-header">
+                        <h4>Knowledge Check</h4>
+                        <span id="quiz-progress">1/3</span>
+                    </div>
+                    <p id="quiz-question">Loading question...</p>
+                    <div id="quiz-options" class="options-grid">
+                        <!-- Options injected via JS -->
+                    </div>
+                    <div id="quiz-feedback" class="feedback-msg hidden"></div>
+                    <button id="quiz-next" class="neon-btn mini hidden">Next Question &rarr;</button>
+                </div>
+
+                <div class="sigmoid-viz glass">
+                    <h4>Sigmoid Visualizer</h4>
+                    <canvas id="sigmoidCanvas"></canvas>
+                    <div class="sigmoid-formula">σ(z) = 1 / (1 + e<sup>-z</sup>)</div>
+                </div>
+            </section>
+
+            <!-- Right Panel: The Play Zone -->
+            <section class="game-zone glass">
+                <div class="metrics-bar">
+                    <div class="metric">
+                        <label>Accuracy</label>
+                        <div class="progress-container">
+                            <div id="accuracy-fill" class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <span id="accuracy-text">0%</span>
+                    </div>
+                    <div class="metric" title="Average squared difference between prediction and actual label">
+                        <label>Mean Error (MSE)</label>
+                        <div class="heat-meter">
+                            <div id="loss-fill" class="heat-fill" style="width: 100%;"></div>
+                        </div>
+                        <span id="loss-text">1.50</span>
+                    </div>
+                </div>
+
+                <div class="canvas-container">
+                    <canvas id="mainCanvas"></canvas>
+                    <div id="canvas-overlay" class="hint-text">Adjust sliders to separate clusters. The line forms where
+                        the S-Curve cuts exactly at 0.5 probability!</div>
+                </div>
+
+                <div class="legend">
+                    <span class="legend-item"><span class="dot blue"></span> Success (1)</span>
+                    <span class="legend-item"><span class="dot red"></span> Failure (0)</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
