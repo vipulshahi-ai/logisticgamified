@@ -313,13 +313,13 @@ class LogitLab {
         document.querySelectorAll('.b-val').forEach(el => el.textContent = this.b.toFixed(1));
 
         // Update Meters
-        const accFill = document.getElementById('accuracy-fill');
-        const accText = document.getElementById('accuracy-text');
+        const accFill = document.getElementById('acc-fill');
+        const accText = document.getElementById('acc-val');
         if (accFill) accFill.style.width = `${accuracy}%`;
         if (accText) accText.textContent = `${accuracy.toFixed(0)}%`;
 
-        const lossFill = document.getElementById('loss-fill');
-        const lossText = document.getElementById('loss-text');
+        const lossFill = document.getElementById('mse-fill');
+        const lossText = document.getElementById('mse-val');
         const errorPercent = Math.min(100, mse * 100);
         if (lossFill) lossFill.style.width = `${errorPercent}%`;
         if (lossText) lossText.textContent = mse.toFixed(2);
@@ -330,8 +330,8 @@ class LogitLab {
     }
 
     updateModuleInfo() {
-        const title = document.getElementById('module-title');
-        const desc = document.getElementById('module-desc');
+        const title = document.getElementById('current-title');
+        const desc = document.getElementById('current-desc');
 
         switch (this.level) {
             case 1:

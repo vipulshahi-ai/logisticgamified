@@ -33,14 +33,11 @@
                 </div>
 
                 <div class="module-content">
-                    <div id="module-info" class="info-box">
-                        <h3 id="module-title">The Linear Combo</h3>
-                        <p id="module-desc">Adjust the weights (w) and bias (b) to move the decision boundary. The value
-                            <strong>z = w₁x₁ + w₂x₂ + b</strong> determines the distance from the line.
-                        </p>
-                        <div class="formula">
-                            <span id="formula-display">z = <span class="w1-val">1.0</span>x₁ + <span
-                                    class="w2-val">1.0</span>x₂ + <span class="b-val">0.0</span></span>
+                    <div class="info-box glass">
+                        <div id="topic-intro">
+                            <h3 id="current-title">The Linear Core</h3>
+                            <p id="current-desc">z = w₁x₁ + w₂x₂ + b model. Higher z means Success.</p>
+                            <div class="formula" id="formula-display">z = 1.0x₁ + 1.0x₂ + 0.0</div>
                         </div>
                     </div>
 
@@ -91,27 +88,25 @@
 
             <!-- Right Panel: The Play Zone -->
             <section class="game-zone glass">
-                <div class="metrics-bar">
-                    <div class="metric">
-                        <label>Accuracy</label>
-                        <div class="progress-container">
-                            <div id="accuracy-fill" class="progress-fill" style="width: 0%;"></div>
-                        </div>
-                        <span id="accuracy-text">0%</span>
-                    </div>
-                    <div class="metric" title="Average squared difference between prediction and actual label">
-                        <label>Mean Error (MSE)</label>
-                        <div class="heat-meter">
-                            <div id="loss-fill" class="heat-fill" style="width: 100%;"></div>
-                        </div>
-                        <span id="loss-text">1.50</span>
-                    </div>
-                </div>
-
                 <div class="canvas-container">
+                    <div class="metrics-overlay">
+                        <div class="metric">
+                            <label>Accuracy</label>
+                            <div class="progress-container">
+                                <div class="progress-fill" id="acc-fill" style="width: 0%"></div>
+                            </div>
+                            <span id="acc-val">0%</span>
+                        </div>
+                        <div class="metric">
+                            <label>Loss (MSE)</label>
+                            <div class="heat-meter">
+                                <div class="heat-fill" id="mse-fill" style="width: 50%"></div>
+                            </div>
+                            <span id="mse-val">1.50</span>
+                        </div>
+                    </div>
                     <canvas id="mainCanvas"></canvas>
-                    <div id="canvas-overlay" class="hint-text">Adjust sliders to separate clusters. The line forms where
-                        the S-Curve cuts exactly at 0.5 probability!</div>
+                    <div class="hint-text" id="dynamic-hint">Adjust sliders to separate clusters!</div>
                 </div>
 
                 <div class="legend">
